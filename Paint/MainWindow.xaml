@@ -1,0 +1,131 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Name="Paint" x:Class="Paint.MainWindow"
+        Title="Paint" Height="790" Width="880" Icon="Images/paint.jpg" >
+    <Grid Background="AliceBlue">
+        <Border BorderBrush="Black"  HorizontalAlignment="Left" Height="55" Margin="10,5,0,0" VerticalAlignment="Top" Width="300">
+            <Grid x:Name="gridFunction" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="300" Margin="-1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Button x:Name="btnSave"   HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Height="35" Width="35" Click="btnSave_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/save.png"/>
+                    </Button.Background>
+                </Button>
+                <Label Content="Save" HorizontalAlignment="Left" Margin="11,33,0,0" VerticalAlignment="Top" Height="26" Width="52"/>
+                <Button x:Name="Load"  HorizontalAlignment="Left" Margin="50,5,0,0" VerticalAlignment="Top" Width="35" Height="35" Click="Load_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/load.png"/>
+                    </Button.Background>
+                </Button>
+                <Label Content="Load" HorizontalAlignment="Left" Margin="49,33,0,0" VerticalAlignment="Top" Height="26" Width="52"/>
+                <Button x:Name="Undo"  HorizontalAlignment="Left" Margin="200,5,0,0" VerticalAlignment="Top" Width="35" Height="35" Click="Undo_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/undo.ico"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="Redo"  HorizontalAlignment="Left" Margin="245,5,0,0" VerticalAlignment="Top" Width="35" Height="35" Click="Redo_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/redo.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="600" Margin="10,150,0,0" VerticalAlignment="Top" Width="850">
+            <Canvas x:Name="MyCanvas" ClipToBounds="True" HorizontalAlignment="Left" Height="590" Width="840" Background="White" Loaded="MyCanvas_Loaded"
+                    MouseLeftButtonDown="MyCanvas_MouseLeftButtonDown" MouseMove="MyCanvas_MouseMove" MouseLeftButtonUp="MyCanvas_MouseLeftButtonUp"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="80" Margin="658,65,0,0" VerticalAlignment="Top" Width="202">
+            <Grid x:Name="gridColor" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="200" Margin="-1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="1" Grid.Column="0" Content="Color" FontSize="8" FontWeight="Bold" HorizontalAlignment="Center" Margin="90,0,91,0" Width="30"/>
+
+                <StackPanel Grid.Row="0" HorizontalAlignment="Left" Height="55" Margin="0,1,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="158">
+                    <DockPanel LastChildFill="True" Height="55" Margin="0,0,-43,0">
+
+                        <Button x:Name="btnMoreColor" Content="More" Width="50" Height="55" DockPanel.Dock="Right" Click="btnMoreColor_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        <UniformGrid x:Name="unfgrid" Rows="2" Columns="4">
+                            <Button x:Name="btnColorBlack" Background="White" Click="btnColor_Click" />
+                            <Button x:Name="btnColorRed" Background="Red" Click="btnColor_Click" />
+                            <Button x:Name="btnColorOrange" Background="Orange" Click="btnColor_Click" />
+                            <Button x:Name="btnColorYellow" Background="Yellow" Click="btnColor_Click" />
+                            <Button x:Name="btnColorGreen" Background="Green" Click="btnColor_Click" />
+                            <Button x:Name="btnColorBlue" Background="Blue" Click="btnColor_Click" />
+                            <Button x:Name="btnColorWhite" Background="Black" Click="btnColor_Click" />
+                            <Button x:Name="btnColorMagenta" Background="Magenta" Click="btnColor_Click" />
+
+                        </UniformGrid>
+
+                    </DockPanel>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="80" Margin="10,65,0,0" VerticalAlignment="Top" Width="276">
+            <Grid HorizontalAlignment="Left" Width="289" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="33" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="2" Content="Style" FontSize="8" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,0" Width="33"/>
+                <Label Grid.Row="0"  Content="Outline" HorizontalAlignment="Left" Margin="-1,-1,0,0" VerticalAlignment="Top" Width="52" Height="29"/>
+                <ComboBox x:Name="cbbOutLine" HorizontalAlignment="Left" Margin="45,5,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="cbbOutLine_SelectionChanged" SelectedIndex="0" Height="22">
+
+                    <Image Source="/Images/solid.JPG" Width="100"></Image>
+                    <Image Source="/Images/dot.JPG" Width="100"></Image>
+                    <Image Source="/Images/dash.JPG" Width="100"></Image>
+                    <Image Source="/Images/dotdash.JPG" Width="100"></Image>
+
+                </ComboBox>
+
+                <Label x:Name="lblSize" Content="Size" HorizontalAlignment="Left" Margin="-1,0,0,0" VerticalAlignment="Top" Height="26" Width="52" Grid.Row="1"/>
+                <ComboBox x:Name="cbbSize" HorizontalAlignment="Left" Margin="45,5,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="cbbSize_SelectionChanged" Grid.Row="1" SelectedIndex="0">
+                    <Image Source="/Images/size1.JPG" Width="100"></Image>
+                    <Image Source="/Images/size2.JPG" Width="100"></Image>
+                    <Image Source="/Images/size3.JPG" Width="100"></Image>
+                    <Image Source="/Images/size4.JPG" Width="100"></Image>
+                </ComboBox>
+                <Label Content="Color" HorizontalAlignment="Left" Margin="165,5,0,0" VerticalAlignment="Top" Height="26" Width="52"/>
+                <Button x:Name="btnColor" Content="" Margin="204,9,23,0" Height="50" Background="Black" Grid.RowSpan="2" VerticalAlignment="Top" />
+
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="80" Margin="300,65,0,0" VerticalAlignment="Top" Width="350">
+            <StackPanel Orientation="Horizontal">
+                
+                <Button x:Name="btnLine"   HorizontalAlignment="Left" Margin="5,5,0,0"  VerticalAlignment="Top" Width="60" Height="60" Click="btnLine_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/line.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnEllipse"   HorizontalAlignment="Left" Margin="5,5,0,0"  VerticalAlignment="Top" Width="70" Height="60" Click="btnEllipse_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/ellipse.JPG"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnRetangle"   HorizontalAlignment="Left" Margin="5,5,0,0"  VerticalAlignment="Top" Width="60" Height="60" Click="btnRetangle_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/retangle.JPG"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnCircle"   HorizontalAlignment="Left" Margin="5,5,0,0"  VerticalAlignment="Top" Width="60" Height="60" Click="btnCircle_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/circle.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnSquare"   HorizontalAlignment="Left" Margin="5,5,0,0"  VerticalAlignment="Top" Width="70" Height="60" Click="btnSquare_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/square.png"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+            </Border>
+    </Grid>
+</Window>
